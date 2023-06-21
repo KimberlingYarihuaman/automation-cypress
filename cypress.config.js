@@ -5,7 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
      
     },
-    baseUrl: "https://automationexercise.com/",
+    baseUrl: "https://automationexercise.com",
     specPattern: "./cypress/e2e/Shopstore/**/*.spec.js",
   },
 });
