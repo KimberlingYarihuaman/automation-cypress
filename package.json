@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "open": "npx cypress open"
+    "desktop": "npx cypress open --config-file cypress-shopstore-desktop.config.js",
+    "mobile": "npx cypress open --config-file cypress-shopstore-mobile.config.js"
   },
   "author": "",
   "license": "ISC",
