@@ -31,5 +31,29 @@ export const home = {
     },
     getCarouselSecondaryButton: () => {
         return cy.get('[id="slider-carousel"]').find('button').parent().eq(1)
+    },
+    getHeadingProduct: () => {
+        return cy.get('h2[class="title text-center"]')
+    },
+    getProducts: () => {
+        return cy.get('div[class="product-image-wrapper"]')
+    },
+    getProductsImage: () => {
+        return cy.get('div[class="productinfo text-center"]').find('img')
+    },
+    getProductsHeading: () => {
+        return cy.get('div[class="productinfo text-center"]').find('h2')
+    },
+    getProductsDescription: () => {
+        return cy.get('div[class="productinfo text-center"]').find('p')
+    },
+    getAddToCartButton: () => {
+        return cy.get('div[class="productinfo text-center"]').find('a')
+    },
+    getViewProductButton: () => {
+        return cy.get('div[class="choose"]').find('a')
+    },
+    getChosenProduct: () => {
+        return cy.get('div[class="choose"]').find('a[href="/product_details/21"]')
     }
 }

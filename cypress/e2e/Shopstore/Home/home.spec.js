@@ -55,7 +55,12 @@ describe('Home Page Tests', () => {
     }
 
     it('[TXX] - User Is Able To Click On The Primary Button On Carousel', function () {
-        //PRIMARY BUTTON
+        //VALIDATE STATUS LINK
+        home.getCarouselPrimaryButton().should("have.attr", "href").then((href) => {
+            cy.pageReturnValidStatus(href);
+        })
+
+        //CLICK ON PRIMARY BUTTON
         home.getCarouselPrimaryButton().should('be.visible').click({ force: true })
 
         //VALIDATE URL
@@ -63,10 +68,58 @@ describe('Home Page Tests', () => {
     })
 
     it('[TXX] - User Is Able To Click On The Secondary Button On Carousel', function () {
-        //SECONDARY BUTTON
+         //VALIDATE STATUS LINK
+         home.getCarouselSecondaryButton().should("have.attr", "href").then((href) => {
+            cy.pageReturnValidStatus(href);
+        })
+
+        //CLICK ON SECONDARY BUTTON
         home.getCarouselSecondaryButton().should('be.visible').click({ force: true })
 
         //VALIDATE URL
         cy.url().should('include', '/api_list')
+    })
+
+    it('[TXX] - User Is Able To See The Products', function () {
+        //HEADING
+        home.getHeadingProduct().should('exist')
+
+        //PRODUCTS
+        home.getProducts().should('exist')
+        .its('length').should('gte', 40)
+
+        //IMAGE OF THE PRODUCT
+        home.getProductsImage().should('be.visible')
+        .its('length').should('gte', 40)
+
+        //HEADING OF THE PRODUCT
+        home.getProductsHeading().should('be.visible')
+        .its('length').should('gte', 40)
+
+        //DESCRIPTION OF THE PRODUCT
+        home.getProductsDescription().should('be.visible')
+        .its('length').should('gte', 40)
+
+        //ADD TO CARD BUTTON
+        home.getAddToCartButton().should('be.visible')
+        .its('length').should('gte', 40)
+
+        //VALIDATE LINK STATUS
+        home.getViewProductButton().should('be.visible')
+        .and("have.attr", "href").then((href) => {
+            cy.pageReturnValidStatus(href);
+        })
+
+        //VIEW PRODUCT BUTTON
+        home.getViewProductButton().should('be.visible')
+        .its('length').should('gte', 34)
+    })
+
+    it('[TXX] - User Is Able To Choose A Product And Click On The View Product Button', function () {
+       //CLICK ON THE CHOSEN PRODUCT
+       home.getChosenProduct().click({ force: true })
+
+       //VERIFY NEW WEBSITE
+       cy.url().should('include', '/product_details/21')
     })
 })
