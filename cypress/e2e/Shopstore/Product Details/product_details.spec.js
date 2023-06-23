@@ -36,7 +36,7 @@ describe('Product Details Tests', () => {
         productDetails.getAdditionalInformation().should('be.visible')
     })
 
-    it.only('[TXX] - User Is Able To Type Out A Value Into The Quantity Field And Click On Add To Cart Button', function () {
+    it('[TXX] - User Is Able To Type Out A Value Into The Quantity Field And Click On Add To Cart Button', function () {
         //TYPE OUT A VALUE
         productDetails.getQuantityField().click({ force: true })
         .clear()
