@@ -1,8 +1,10 @@
 import { cartSummary } from '../../../components/Shopstore/Cart/cart-and-cart -summary-component';
 import { signIn } from '../../../components/Shopstore/Sign In/sign-in-component';
 import { orderConfirmation } from '../../../components/Shopstore/Confirmation/order-confirmation-component';
-import { modal } from '../../../components/Common/modal-component';
 import { checkout } from '../../../components/Shopstore/Checkout/checkout-component';
+import { home } from '../../../components/Shopstore/Home/home-component';
+import { modal } from '../../../components/Common/modal-component';
+
 
 describe('Payment Tests', () => {
 
@@ -48,5 +50,8 @@ describe('Payment Tests', () => {
         })
         //CLICK ON THE CONTINUE BUTTON
         orderConfirmation.getContinueButton().should('be.visible').click({ force: true })
+
+        //CLICK ON THE LOG OUT
+        home.getHeaderLogOutOption().should('be.visible').click({ force: true })
     })
 })

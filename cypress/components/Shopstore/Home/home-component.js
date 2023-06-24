@@ -2,6 +2,9 @@ export const home = {
     getHeader: () => {
         return cy.get('[id="header"]').find('ul').children()
     },
+    getHeaderLogOutOption: () => {
+        return cy.get('[id="header"]').find('ul').children().eq(3)
+    },
     getHeaderIteams: () => {
         return cy.get('[id="header"]').find('li>a')
     },
