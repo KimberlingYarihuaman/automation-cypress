@@ -1,7 +1,8 @@
 import { productDetails } from '../components/Shopstore/Product Details/product-details-component.js'
+import { payment } from '../components/Shopstore/Payment/payment-component.js'
 import { createAccount } from '../components/Shopstore/Sign Up/account-creation-component.js'
-import { modal } from '../components/Common/modal-component.js'
 import { generatorEmails } from '../components/Common/generate-email-component.js'
+import { modal } from '../components/Common/modal-component.js'
 
 
 //VALIDATE THE LINK STATUS
@@ -59,4 +60,17 @@ Cypress.Commands.add('signUpNewUser', () => {
    createAccount.getAddressInformationZipCode().type('L4K - M9W')
    createAccount.getAddressInformationMobileNumber().type('+6470987987')
    createAccount.getCreateAccountButton().click({ force: true })
+});
+
+//ADD A NEW PAYMENT METHOD
+Cypress.Commands.add('newPaymentMethod', () => {
+  cy.visit('/payment')
+  
+  //CARD FIELDS
+  payment.getNameCard().type('Kimberling Yarihuaman')
+  payment.getCardNumber().type('4321567890121234')
+  payment.getCVC().type('346')
+  payment.getExpirationMonth().type('12')
+  payment.getExpirationYear().type('2029')
+  payment.getPayConfirmButton().click({ force: true })
 });

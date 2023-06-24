@@ -19,7 +19,7 @@ describe('Payment Tests', () => {
         cy.signUpNewUser()
     })
 
-    it('[TXX] - User Is Able To See The Payment Page', function () {
+    it('[TXX] - User Is Able To See The Payment Page And Click On The Pay And Confirm Button', function () {
         //CLICK ON THE SHOPPING CART BUTTON
         signIn.getShoppingCartButton().click({ force: true })
 
