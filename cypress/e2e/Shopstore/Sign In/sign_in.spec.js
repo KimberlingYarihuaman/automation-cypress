@@ -1,8 +1,10 @@
 import { cartSummary } from '../../../components/Shopstore/Cart/cart-and-cart -summary-component';
+import { createAccount } from '../../../components/Shopstore/Sign Up/account-creation-component';
+import { home } from '../../../components/Shopstore/Home/home-component';
 import { signIn } from '../../../components/Shopstore/Sign In/sign-in-component';
 import { modal } from '../../../components/Common/modal-component';
 
-describe('Sign In Tests', () => {
+describe('Validations About The Sign In Page Tests', () => {
 
     beforeEach(function () {
         //ADD A NEW PRODUCT
@@ -33,5 +35,25 @@ describe('Sign In Tests', () => {
 
         //CLICK ON THE PROCEED TO CHECKOUT BUTTON
         cartSummary.getCheckOutButton().should('be.visible').click({ force: true })
+    })
+})
+
+describe.only('Log In Page Tests', () => {
+
+    beforeEach(function () {
+       cy.Login()
+    })
+
+    it('[TXX] - User Is Able To Log In With The Created Previously User And Click On The Contact Us', function () {
+       //VALIDATE THE LINK STATUS
+       home.getHeaderContactUsOption().should('be.visible')
+       .and("have.attr", "href").then((href) => {
+            cy.pageReturnValidStatus(href);
+        })
+        //CLICK ON THE CONTACT US LINK
+        home.getHeaderContactUsOption().click({ force: true })
+
+        //SHOW THE CONTACT US PAGE
+        cy.url().should('include', '/contact_us')
     })
 })

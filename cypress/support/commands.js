@@ -2,6 +2,7 @@ import { productDetails } from '../components/Shopstore/Product Details/product-
 import { payment } from '../components/Shopstore/Payment/payment-component.js'
 import { createAccount } from '../components/Shopstore/Sign Up/account-creation-component.js'
 import { generatorEmails } from '../components/Common/generate-email-component.js'
+import { signIn } from '../components/Shopstore/Sign In/sign-in-component.js';
 import { modal } from '../components/Common/modal-component.js'
 
 
@@ -73,4 +74,20 @@ Cypress.Commands.add('newPaymentMethod', () => {
   payment.getExpirationMonth().type('12')
   payment.getExpirationYear().type('2029')
   payment.getPayConfirmButton().click({ force: true })
+});
+
+//LOG IN USERS
+Cypress.Commands.add('Login', () => {
+  cy.visit('/login')
+  
+  cy.readFile('cypress/fixtures/login.json').then((json) => {
+    //EMAIL
+    createAccount.getLogInEmailField().should('be.visible').type(json.email)
+    //PASSWORD
+    createAccount.getLogInPasswordField().should('be.visible').type(json.password)
+    //CLICK ON THE LOGIN BUTTON
+    createAccount.getLogInButton().should('be.visible').click({ force: true })
+    //NAME USER IS SHOWN
+    signIn.getHeaderUserName(json.name).should('be.visible')
+  })
 });

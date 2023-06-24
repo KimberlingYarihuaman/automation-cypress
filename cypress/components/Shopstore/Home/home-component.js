@@ -5,6 +5,9 @@ export const home = {
     getHeaderLogOutOption: () => {
         return cy.get('[id="header"]').find('ul').children().eq(3)
     },
+    getHeaderContactUsOption: () => {
+        return cy.get('[id="header"]').find('ul').children().eq(8).children()
+    },
     getHeaderIteams: () => {
         return cy.get('[id="header"]').find('li>a')
     },

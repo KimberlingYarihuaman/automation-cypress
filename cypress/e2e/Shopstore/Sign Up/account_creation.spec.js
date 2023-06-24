@@ -37,11 +37,14 @@ describe('Sign Up Tests', () => {
     })
 
     it('[TXX] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
+        let email="", password="", name="";
         //NAME
-        createAccount.getSignUpNameField().type('Kimberling')
+        name = 'Kimberling'
+        createAccount.getSignUpNameField().type(name)
 
         //EMAIL
-        createAccount.getSignUpEmailField().type(generatorEmails.getGenerateEmail())
+        email = generatorEmails.getGenerateEmail()
+        createAccount.getSignUpEmailField().type(email)
 
         //SIGN UP BUTTON
         createAccount.getSignUpButton().click({ force: true })
@@ -54,14 +57,16 @@ describe('Sign Up Tests', () => {
         createAccount.getMrsOption().should('be.visible').check()
 
         //CHANGE THE NAME
-        createAccount.getAccountInformationNameField().should('be.visible').type(' Graciela')
+        name = name+ ' Graciela'
+        createAccount.getAccountInformationNameField().should('be.visible').type(name)
 
         //PREFILLED EMAIL
         createAccount.getAccountInformationEmailField().should('be.visible')
         .and('have.attr', 'disabled','disabled')
 
         //PASSWORD
-        createAccount.getAccountInformationPasswordField().should('be.visible').type('Kim1234567!')
+        password = 'Kim1234567!'
+        createAccount.getAccountInformationPasswordField().should('be.visible').type(password)
 
         //DAYS FIELD
         createAccount.getAccountInformationDaysField().should('be.visible').select('23')
@@ -111,5 +116,8 @@ describe('Sign Up Tests', () => {
 
         //SEE THE LOG IN PAGE
         createAccount.getCreatedAccountHeading("Account Created!").should('be.visible')
+
+        //SAVE THE EMAIL AND PASSWORD
+        cy.writeFile('cypress/fixtures/login.json', {email: email, password: password, name: name})
     })
 })
