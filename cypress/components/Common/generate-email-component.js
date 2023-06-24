@@ -2,7 +2,7 @@ export const generatorEmails = {
 
     getGenerateEmail: () => {
         //GENERATE EMAILS
-        let baseEmail = "kimberling.yarihuaman+"
+        let baseEmail = "testingqamoderna+"
         const alphabet = "abcdefghijklmnopqrstuvwxyz"
         const specialCharacters = "-_+"
  
