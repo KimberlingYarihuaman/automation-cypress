@@ -40,7 +40,7 @@ describe('Cart And Cart Summary Tests', () => {
         cartSummary.getCartInformation().should('not.be.visible')
     })
 
-    it.only('[TXX] - User Is Able To Click On The Proceed To Checkout Button', function () {
+    it('[TXX] - User Is Able To Click On The Proceed To Checkout Button', function () {
         //CLIK ON THE PROCEED TO CHECKOUT BUTTON
         cartSummary.getCheckOutButton().click({ force: true })
 
