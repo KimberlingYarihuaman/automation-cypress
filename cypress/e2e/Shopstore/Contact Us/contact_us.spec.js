@@ -1,3 +1,4 @@
+import { filesPaths, messagesData } from '../../../components/Shopstore/Common/data-provider';
 import { contactUs } from '../../../components/Shopstore/Contact Us/contact-us-component';
 import { home } from '../../../components/Shopstore/Home/home-component';
 
@@ -31,13 +32,13 @@ describe('Contact Us Page Tests', () => {
             contactUs.getEmailField().should('be.visible').type(json.email)
         })
         //SUBJECT
-        contactUs.getSubjectField().should('be.visible').type('Testing')
+        contactUs.getSubjectField().should('be.visible').type(messagesData.SUBJECT)
 
         //MESSAGE
-        contactUs.getMessageField().should('be.visible').type('Automation Testing!')
+        contactUs.getMessageField().should('be.visible').type(messagesData.CONTACT_US_MESSAGE)
 
         //ATTACH FILE
-        contactUs.getUploadFileButton().should('be.visible').selectFile('cypress/files/plants.pdf')
+        contactUs.getUploadFileButton().should('be.visible').selectFile(filesPaths.UPLOAD_FILE)
 
         //CLICK ON THE SUBMIT BUTTON
         contactUs.getSubmitButton().should('be.visible').click({ force: true })

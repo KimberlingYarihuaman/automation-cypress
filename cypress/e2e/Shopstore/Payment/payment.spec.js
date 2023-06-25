@@ -3,13 +3,14 @@ import { signIn } from '../../../components/Shopstore/Sign In/sign-in-component'
 import { payment } from '../../../components/Shopstore/Payment/payment-component';
 import { checkout } from '../../../components/Shopstore/Checkout/checkout-component';
 import { modal } from '../../../components/Shopstore/Common/modal-component';
+import { messagesData, paymentMethodData, productData } from '../../../components/Shopstore/Common/data-provider';
 
 
 describe('Payment Tests', () => {
 
     beforeEach(function () {
         //ADD A NEW PRODUCT
-        cy.addNewProduct(21)
+        cy.addNewProduct(productData.SLEEVELESS_UNICORN_PRINT_FIT_FLARE_NET_DRESS)
         //CLICK ON PROCEED TO CHECKOUT
         cartSummary.getCheckOutButton().click({ force: true })
         //CLICK ON THE REGISTER/LOGIN
@@ -28,7 +29,7 @@ describe('Payment Tests', () => {
         cartSummary.getCheckOutButton().should('be.visible').click({ force: true })
 
         //TYPE OUT A MESSAGE
-        checkout.getOrderMessageField().type('Please, if it is possible to give me dresses different colors. Thanks you!')
+        checkout.getOrderMessageField().type(messagesData.MESSAGE)
 
         //CLICK ON THE PLACE ORDER BUTTON
         checkout.getPlaceOrderButton().click({ force: true })
@@ -40,19 +41,19 @@ describe('Payment Tests', () => {
         payment.getPaymentInformation().should('be.visible')
 
         //NAME CARD
-        payment.getNameCard().should('be.visible').type('Kimberling Yarihuaman')
+        payment.getNameCard().should('be.visible').type(paymentMethodData.NAME)
 
         //CARD NUMBER
-        payment.getCardNumber().should('be.visible').type('4321567890121234')
+        payment.getCardNumber().should('be.visible').type(paymentMethodData.CARD_NUMBER)
 
         //CVC
-        payment.getCVC().should('be.visible').type('346')
+        payment.getCVC().should('be.visible').type(paymentMethodData.CVC)
 
         //EXPIRATION MONTH
-        payment.getExpirationMonth().should('be.visible').type('12')
+        payment.getExpirationMonth().should('be.visible').type(paymentMethodData.EXPIRATION_MONTH)
 
         //EXPIRATION YEAR
-        payment.getExpirationYear().should('be.visible').type('2029')
+        payment.getExpirationYear().should('be.visible').type(paymentMethodData.EXPIRATION_YEAR)
 
         //CLICK ON THE PAY AND CONFIRM ORDER
         payment.getPayConfirmButton().should('be.visible').click({ force: true })

@@ -1,5 +1,6 @@
 import { createAccount } from '../../../components/Shopstore/Sign Up/account-creation-component';
 import { generatorEmails } from '../../../components/Common/generate-email-component';
+import { filesPaths, signUpData } from '../../../components/Shopstore/Common/data-provider';
 
 
 describe('Sign Up Tests', () => {
@@ -36,11 +37,10 @@ describe('Sign Up Tests', () => {
         createAccount.getSignUpButton().should('be.visible')
     })
 
-    it('[TXX] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
-        let email="", password="", name="";
+    it.only('[TXX] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
+        let email="";
         //NAME
-        name = 'Kimberling'
-        createAccount.getSignUpNameField().type(name)
+        createAccount.getSignUpNameField().type(signUpData.NAME)
 
         //EMAIL
         email = generatorEmails.getGenerateEmail()
@@ -57,59 +57,57 @@ describe('Sign Up Tests', () => {
         createAccount.getMrsOption().should('be.visible').check()
 
         //CHANGE THE NAME
-        name = name+ ' Graciela'
-        createAccount.getAccountInformationNameField().should('be.visible').type(name)
+        createAccount.getAccountInformationNameField().should('be.visible').type(signUpData.CHANGED_NAME)
 
         //PREFILLED EMAIL
         createAccount.getAccountInformationEmailField().should('be.visible')
         .and('have.attr', 'disabled','disabled')
 
         //PASSWORD
-        password = 'Kim1234567!'
-        createAccount.getAccountInformationPasswordField().should('be.visible').type(password)
+        createAccount.getAccountInformationPasswordField().should('be.visible').type(signUpData.PASSWORD)
 
         //DAYS FIELD
-        createAccount.getAccountInformationDaysField().should('be.visible').select('23')
+        createAccount.getAccountInformationDaysField().should('be.visible').select(signUpData.DAYS)
         .should('have.value', '23')
 
         //MONTHS FIELD
-        createAccount.getAccountInformationMonthsField().should('be.visible').select('March')
+        createAccount.getAccountInformationMonthsField().should('be.visible').select(signUpData.MONTH)
         .should('have.value', '3')
 
         //YEARS FIELD
-        createAccount.getAccountInformationYearsField().should('be.visible').select('1997')
+        createAccount.getAccountInformationYearsField().should('be.visible').select(signUpData.YEARS)
         .should('have.value', '1997')
 
         //FIRST NAME
-        createAccount.getAddressInformationFirstName().should('be.visible').type('Kim')
+        createAccount.getAddressInformationFirstName().should('be.visible').type(signUpData.FIRST_NAME)
 
         //LAST NAME
-        createAccount.getAddressInformationLastName().should('be.visible').type('Yarihuaman')
+        createAccount.getAddressInformationLastName().should('be.visible').type(signUpData.LAST_NAME)
 
         //COMPANY
-        createAccount.getAddressInformationCompany().should('be.visible').type('Apply Digital')
+        createAccount.getAddressInformationCompany().should('be.visible').type(signUpData.COMPANY)
 
         //ADDRESS 1
-        createAccount.getAddressInformationAddress1().should('be.visible').type('Av Sur 0')
+        createAccount.getAddressInformationAddress1().should('be.visible').type(signUpData.ADDRESS_1)
 
         //ADDRESS 2
-        createAccount.getAddressInformationAddress2().should('be.visible').type('0 Avenue in Surrey, B.C')
+        createAccount.getAddressInformationAddress2().should('be.visible').type(signUpData.ADDRESS_2)
 
         //COUNTRY
-        createAccount.getAddressInformationCountry().should('be.visible').select('Canada')
+        createAccount.getAddressInformationCountry().should('be.visible').select(signUpData.COUNTRY)
         .should('have.value', 'Canada')
 
         //STATE
-        createAccount.getAddressInformationState().should('be.visible').type('Ontario')
+        createAccount.getAddressInformationState().should('be.visible').type(signUpData.STATE)
 
         //CITY
-        createAccount.getAddressInformationCity().should('be.visible').type('Toronto')
+        createAccount.getAddressInformationCity().should('be.visible').type(signUpData.CITY)
 
         //ZIP CODE
-        createAccount.getAddressInformationZipCode().should('be.visible').type('L4K - M9W')
+        createAccount.getAddressInformationZipCode().should('be.visible').type(signUpData.ZIP_CODE)
 
         //MOBILE NUMBER
-        createAccount.getAddressInformationMobileNumber().should('be.visible').type('+6470987654')
+        createAccount.getAddressInformationMobileNumber().should('be.visible').type(signUpData.MOBILE_NUMBER)
 
         //CREATE ACCOUNT BUTTON
         createAccount.getCreateAccountButton().click({ force: true })
@@ -118,6 +116,6 @@ describe('Sign Up Tests', () => {
         createAccount.getCreatedAccountHeading("Account Created!").should('be.visible')
 
         //SAVE THE EMAIL AND PASSWORD
-        cy.writeFile('cypress/fixtures/login.json', {email: email, password: password, name: name})
+        cy.writeFile(filesPaths.FIXTURES_LOGIN, {email: email, password: signUpData.PASSWORD, name: signUpData.NAME})
     })
 })

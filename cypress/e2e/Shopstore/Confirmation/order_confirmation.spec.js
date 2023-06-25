@@ -4,13 +4,14 @@ import { orderConfirmation } from '../../../components/Shopstore/Confirmation/or
 import { checkout } from '../../../components/Shopstore/Checkout/checkout-component';
 import { home } from '../../../components/Shopstore/Home/home-component';
 import { modal } from '../../../components/Shopstore/Common/modal-component';
+import { messagesData, productData } from '../../../components/Shopstore/Common/data-provider';
 
 
 describe('Payment Tests', () => {
 
     beforeEach(function () {
         //ADD A NEW PRODUCT
-        cy.addNewProduct(21)
+        cy.addNewProduct(productData.MEN_TSHIRT)
         //CLICK ON PROCEED TO CHECKOUT
         cartSummary.getCheckOutButton().click({ force: true })
         //CLICK ON THE REGISTER/LOGIN
@@ -29,7 +30,7 @@ describe('Payment Tests', () => {
         cartSummary.getCheckOutButton().should('be.visible').click({ force: true })
 
         //TYPE OUT A MESSAGE
-        checkout.getOrderMessageField().type('Please, if it is possible to give me dresses different colors. Thanks you!')
+        checkout.getOrderMessageField().type(messagesData.MESSAGE)
 
         //CLICK ON THE PLACE ORDER BUTTON
         checkout.getPlaceOrderButton().click({ force: true })

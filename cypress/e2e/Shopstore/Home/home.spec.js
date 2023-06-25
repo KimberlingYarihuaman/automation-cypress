@@ -1,5 +1,6 @@
 import { home } from '../../../components/Shopstore/Home/home-component';
 import { image } from '../../../components/Common/image-component';
+import { productData } from '../../../components/Shopstore/Common/data-provider';
 
 
 describe('Home Page Tests', () => {
@@ -117,9 +118,9 @@ describe('Home Page Tests', () => {
 
     it('[TXX] - User Is Able To Choose A Product And Click On The View Product Button', function () {
        //CLICK ON THE CHOSEN PRODUCT
-       home.getChosenProduct().click({ force: true })
+       home.getChosenProduct(productData.COTTON_MULL_EMBROIDERED_DRESS).click({ force: true })
 
        //VERIFY NEW WEBSITE
-       cy.url().should('include', '/product_details/21')
+       cy.url().should('include', '/product_details/' + productData.COTTON_MULL_EMBROIDERED_DRESS)
     })
 })

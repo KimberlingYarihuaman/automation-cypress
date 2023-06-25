@@ -1,11 +1,12 @@
 import { productDetails } from '../../../components/Shopstore/Product Details/product-details-component';
 import { modal } from '../../../components/Shopstore/Common/modal-component';
+import { productData } from '../../../components/Shopstore/Common/data-provider';
 
 
 describe('Product Details Tests', () => {
 
     beforeEach(function () {
-        cy.visit('/product_details/21');
+        cy.visit('/product_details/' + productData.PREMIUM_POLO_TSHIRTS);
     })
 
     it('[TXX] - User Is Able To See The Product Detail', function () {
@@ -40,7 +41,7 @@ describe('Product Details Tests', () => {
         //TYPE OUT A VALUE
         productDetails.getQuantityField().click({ force: true })
         .clear()
-        .type('30')
+        .type(productData.CHOSEN_QUANTITY)
         
         //CLICK ON THE ADD TO CART BUTTON
         productDetails.getAddToCart().should('be.visible').click({ force: true })

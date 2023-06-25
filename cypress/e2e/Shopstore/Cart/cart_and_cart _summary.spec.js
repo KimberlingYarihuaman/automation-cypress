@@ -1,11 +1,12 @@
 import { cartSummary } from '../../../components/Shopstore/Cart/cart-and-cart -summary-component';
+import { productData } from '../../../components/Shopstore/Common/data-provider';
 import { modal } from '../../../components/Shopstore/Common/modal-component';
 
 describe('Cart And Cart Summary Tests', () => {
 
     beforeEach(function () {
-        //ADD A NEW PRODUCT IN ORDER TO GO THE VIEW CART WEBSITE
-        cy.addNewProduct(21)
+        //ADD A NEW PRODUCT IN O.BLUE_COTTON_INDIE_MICKEY_DRESS
+        cy.addNewProduct(productData.COTTON_MULL_EMBROIDERED_DRESS)
     })
 
     it('[TXX] - User Is Able To See The Cart Summary', function () {

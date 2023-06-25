@@ -4,6 +4,7 @@ import { createAccount } from '../components/Shopstore/Sign Up/account-creation-
 import { generatorEmails } from '../components/Common/generate-email-component.js'
 import { signIn } from '../components/Shopstore/Sign In/sign-in-component.js';
 import { modal } from '../components/Shopstore/Common/modal-component';
+import { filesPaths, paymentMethodData, productData, signUpData } from '../components/Shopstore/Common/data-provider.js';
 
 
 //VALIDATE THE LINK STATUS
@@ -25,7 +26,7 @@ Cypress.Commands.add('addNewProduct', (productNumber) => {
 
     productDetails.getQuantityField().click({ force: true })
     .clear()
-    .type('30')
+    .type(productData.CHOSEN_QUANTITY)
     
     productDetails.getAddToCart().click({ force: true })
 
@@ -39,27 +40,27 @@ Cypress.Commands.add('signUpNewUser', () => {
    cy.visit('/login')
 
    //NEW USER SIGNUP!
-   createAccount.getSignUpNameField().type('Alejandra')
+   createAccount.getSignUpNameField().type(signUpData.NAME)
    createAccount.getSignUpEmailField().type(generatorEmails.getGenerateEmail())
    createAccount.getSignUpButton().click({ force: true })
 
    //ADDITIONAL INFORMATION
    createAccount.getMrsOption().check()
-   createAccount.getAccountInformationNameField().type(' Natalie')
-   createAccount.getAccountInformationPasswordField().type('Kim1234567!')
-   createAccount.getAccountInformationDaysField().select('19')
-   createAccount.getAccountInformationMonthsField().select('July')
-   createAccount.getAccountInformationYearsField().select('1990')
-   createAccount.getAddressInformationFirstName().type('Ale')
-   createAccount.getAddressInformationLastName().type('Mendoza')
-   createAccount.getAddressInformationCompany().type('Apply Digital')
-   createAccount.getAddressInformationAddress1().type('Av Sur 0')
-   createAccount.getAddressInformationAddress2().type('0 Avenue in Surrey, B.C')
-   createAccount.getAddressInformationCountry().select('Canada')
-   createAccount.getAddressInformationState().type('Ontario')
-   createAccount.getAddressInformationCity().type('Toronto')
-   createAccount.getAddressInformationZipCode().type('L4K - M9W')
-   createAccount.getAddressInformationMobileNumber().type('+6470987987')
+   createAccount.getAccountInformationNameField().type(signUpData.CHANGED_NAME)
+   createAccount.getAccountInformationPasswordField().type(signUpData.PASSWORD)
+   createAccount.getAccountInformationDaysField().select(signUpData.DAYS)
+   createAccount.getAccountInformationMonthsField().select(signUpData.MONTH)
+   createAccount.getAccountInformationYearsField().select(signUpData.YEARS)
+   createAccount.getAddressInformationFirstName().type(signUpData.FIRST_NAME)
+   createAccount.getAddressInformationLastName().type(signUpData.LAST_NAME)
+   createAccount.getAddressInformationCompany().type(signUpData.COMPANY)
+   createAccount.getAddressInformationAddress1().type(signUpData.ADDRESS_1)
+   createAccount.getAddressInformationAddress2().type(signUpData.ADDRESS_2)
+   createAccount.getAddressInformationCountry().select(signUpData.COUNTRY)
+   createAccount.getAddressInformationState().type(signUpData.STATE)
+   createAccount.getAddressInformationCity().type(signUpData.CITY)
+   createAccount.getAddressInformationZipCode().type(signUpData.ZIP_CODE)
+   createAccount.getAddressInformationMobileNumber().type(signUpData.MOBILE_NUMBER)
    createAccount.getCreateAccountButton().click({ force: true })
 });
 
@@ -68,11 +69,11 @@ Cypress.Commands.add('newPaymentMethod', () => {
   cy.visit('/payment')
   
   //CARD FIELDS
-  payment.getNameCard().type('Kimberling Yarihuaman')
-  payment.getCardNumber().type('4321567890121234')
-  payment.getCVC().type('346')
-  payment.getExpirationMonth().type('12')
-  payment.getExpirationYear().type('2029')
+  payment.getNameCard().type(paymentMethodData.NAME)
+  payment.getCardNumber().type(paymentMethodData.CARD_NUMBER)
+  payment.getCVC().type(paymentMethodData.CVC)
+  payment.getExpirationMonth().type(paymentMethodData.EXPIRATION_MONTH)
+  payment.getExpirationYear().type(paymentMethodData.EXPIRATION_YEAR)
   payment.getPayConfirmButton().click({ force: true })
 });
 
@@ -80,7 +81,7 @@ Cypress.Commands.add('newPaymentMethod', () => {
 Cypress.Commands.add('Login', () => {
   cy.visit('/login')
   
-  cy.readFile('cypress/fixtures/login.json').then((json) => {
+  cy.readFile(filesPaths.FIXTURES_LOGIN).then((json) => {
     //EMAIL
     createAccount.getLogInEmailField().should('be.visible').type(json.email)
     //PASSWORD

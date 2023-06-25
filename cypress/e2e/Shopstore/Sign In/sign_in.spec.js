@@ -2,12 +2,13 @@ import { cartSummary } from '../../../components/Shopstore/Cart/cart-and-cart -s
 import { home } from '../../../components/Shopstore/Home/home-component';
 import { signIn } from '../../../components/Shopstore/Sign In/sign-in-component';
 import { modal } from '../../../components/Shopstore/Common/modal-component';
+import { productData } from '../../../components/Shopstore/Common/data-provider';
 
 describe('Validations About The Sign In Page Tests', () => {
 
     beforeEach(function () {
         //ADD A NEW PRODUCT
-        cy.addNewProduct(21)
+        cy.addNewProduct(productData.SLEEVELESS_UNICORN_PATCH_GOWN)
         //CLICK ON PROCEED TO CHECKOUT
         cartSummary.getCheckOutButton().click({ force: true })
         //CLICK ON THE REGISTER/LOGIN

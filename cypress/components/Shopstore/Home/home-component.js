@@ -59,7 +59,7 @@ export const home = {
     getViewProductButton: () => {
         return cy.get('div[class="choose"]').find('a')
     },
-    getChosenProduct: () => {
-        return cy.get('div[class="choose"]').find('a[href="/product_details/21"]')
+    getChosenProduct: (idProduct) => {
+        return cy.get('div[class="choose"]').find(`a[href="/product_details/${idProduct}"]`)
     }
 }
