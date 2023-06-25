@@ -1,5 +1,5 @@
 import { cartSummary } from '../../../components/Shopstore/Cart/cart-and-cart -summary-component';
-import { modal } from '../../../components/Common/modal-component';
+import { modal } from '../../../components/Shopstore/Common/modal-component';
 
 describe('Cart And Cart Summary Tests', () => {
 

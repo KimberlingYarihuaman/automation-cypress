@@ -1,5 +1,5 @@
 import { productDetails } from '../../../components/Shopstore/Product Details/product-details-component';
-import { modal } from '../../../components/Common/modal-component';
+import { modal } from '../../../components/Shopstore/Common/modal-component';
 
 
 describe('Product Details Tests', () => {

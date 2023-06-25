@@ -3,7 +3,7 @@ import { signIn } from '../../../components/Shopstore/Sign In/sign-in-component'
 import { orderConfirmation } from '../../../components/Shopstore/Confirmation/order-confirmation-component';
 import { checkout } from '../../../components/Shopstore/Checkout/checkout-component';
 import { home } from '../../../components/Shopstore/Home/home-component';
-import { modal } from '../../../components/Common/modal-component';
+import { modal } from '../../../components/Shopstore/Common/modal-component';
 
 
 describe('Payment Tests', () => {

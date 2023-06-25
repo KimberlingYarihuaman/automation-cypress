@@ -3,7 +3,7 @@ import { payment } from '../components/Shopstore/Payment/payment-component.js'
 import { createAccount } from '../components/Shopstore/Sign Up/account-creation-component.js'
 import { generatorEmails } from '../components/Common/generate-email-component.js'
 import { signIn } from '../components/Shopstore/Sign In/sign-in-component.js';
-import { modal } from '../components/Common/modal-component.js'
+import { modal } from '../components/Shopstore/Common/modal-component';
 
 
 //VALIDATE THE LINK STATUS

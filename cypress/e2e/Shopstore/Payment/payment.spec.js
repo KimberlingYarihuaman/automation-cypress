@@ -2,7 +2,7 @@ import { cartSummary } from '../../../components/Shopstore/Cart/cart-and-cart -s
 import { signIn } from '../../../components/Shopstore/Sign In/sign-in-component';
 import { payment } from '../../../components/Shopstore/Payment/payment-component';
 import { checkout } from '../../../components/Shopstore/Checkout/checkout-component';
-import { modal } from '../../../components/Common/modal-component';
+import { modal } from '../../../components/Shopstore/Common/modal-component';
 
 
 describe('Payment Tests', () => {
