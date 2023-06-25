@@ -1,5 +1,4 @@
 import { cartSummary } from '../../../components/Shopstore/Cart/cart-and-cart -summary-component';
-import { createAccount } from '../../../components/Shopstore/Sign Up/account-creation-component';
 import { home } from '../../../components/Shopstore/Home/home-component';
 import { signIn } from '../../../components/Shopstore/Sign In/sign-in-component';
 import { modal } from '../../../components/Common/modal-component';
@@ -38,7 +37,7 @@ describe('Validations About The Sign In Page Tests', () => {
     })
 })
 
-describe.only('Log In Page Tests', () => {
+describe('Log In Page Tests', () => {
 
     beforeEach(function () {
        cy.Login()
