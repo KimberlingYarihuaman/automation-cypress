@@ -19,7 +19,7 @@ describe('Checkout Tests', () => {
         cy.signUpNewUser()
     })
 
-    it('[TXX] - User Is Able To See The Address Details, Review Your Order Sections And Click On The Place Order Button', function () {
+    it('[AE-T15,T16,T17] - User Is Able To See The Address Details, Review Your Order Sections And Click On The Place Order Button', function () {
         //CLICK ON THE SHOPPING CART BUTTON
         signIn.getShoppingCartButton().click({ force: true })
 

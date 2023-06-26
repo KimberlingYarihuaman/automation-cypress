@@ -9,7 +9,7 @@ describe('Home Page Tests', () => {
         cy.visit('/');
     })
 
-    it('[TXX] - User Is Able To See And Validate The Header', function () {
+    it('[AE-T1] - User Is Able To See And Validate The Header', function () {
         //LOGO
         image.getImage("Website for automation practice").should('be.visible')
 
@@ -28,7 +28,7 @@ describe('Home Page Tests', () => {
 
     if(!Cypress.config('isMobile')){
         
-        it('[TXX] - User Is Able To See And Interact With Carousel', function () {
+        it('[AE-T1] - User Is Able To See And Interact With Carousel', function () {
             //CAROUSEL
             home.getCarousel().should('be.visible')
 
@@ -55,7 +55,7 @@ describe('Home Page Tests', () => {
         })
     }
 
-    it('[TXX] - User Is Able To Click On The Primary Button On Carousel', function () {
+    it('[AE-T1] - User Is Able To Click On The Primary Button On Carousel', function () {
         //VALIDATE STATUS LINK
         home.getCarouselPrimaryButton().should("have.attr", "href").then((href) => {
             cy.pageReturnValidStatus(href);
@@ -68,7 +68,7 @@ describe('Home Page Tests', () => {
         cy.url().should('include', '/test_cases')
     })
 
-    it('[TXX] - User Is Able To Click On The Secondary Button On Carousel', function () {
+    it('[AE-T1] - User Is Able To Click On The Secondary Button On Carousel', function () {
          //VALIDATE STATUS LINK
          home.getCarouselSecondaryButton().should("have.attr", "href").then((href) => {
             cy.pageReturnValidStatus(href);
@@ -81,7 +81,7 @@ describe('Home Page Tests', () => {
         cy.url().should('include', '/api_list')
     })
 
-    it('[TXX] - User Is Able To See The Products', function () {
+    it('[AE-T1] - User Is Able To See The Products', function () {
         //HEADING
         home.getHeadingProduct().should('exist')
 
@@ -116,7 +116,7 @@ describe('Home Page Tests', () => {
         .its('length').should('gte', 34)
     })
 
-    it('[TXX] - User Is Able To Choose A Product And Click On The View Product Button', function () {
+    it('[AE-T1,T2] - User Is Able To Choose A Product And Click On The View Product Button', function () {
        //CLICK ON THE CHOSEN PRODUCT
        home.getChosenProduct(productData.COTTON_MULL_EMBROIDERED_DRESS).click({ force: true })
 

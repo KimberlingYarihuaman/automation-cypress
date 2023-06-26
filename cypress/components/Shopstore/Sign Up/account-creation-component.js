@@ -91,5 +91,11 @@ export const createAccount = {
     },
     getCreatedAccountHeading: (text) => {
         return cy.get('h2').children().contains(text)
+    },
+    getContinueButton: () => {
+        return cy.get('[data-qa="continue-button"]')
+    },
+    getCreatedAccountParagraphs: () => {
+        return cy.get('[id="form"]').find('p')
     }
 }

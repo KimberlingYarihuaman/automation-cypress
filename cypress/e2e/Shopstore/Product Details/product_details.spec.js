@@ -9,7 +9,7 @@ describe('Product Details Tests', () => {
         cy.visit('/product_details/' + productData.PREMIUM_POLO_TSHIRTS);
     })
 
-    it('[TXX] - User Is Able To See The Product Detail', function () {
+    it('[AE-T2] - User Is Able To See The Product Detail', function () {
         //GET PRODUCT
         productDetails.getProduct().should('be.visible')
 
@@ -37,7 +37,7 @@ describe('Product Details Tests', () => {
         productDetails.getAdditionalInformation().should('be.visible')
     })
 
-    it('[TXX] - User Is Able To Type Out A Value Into The Quantity Field And Click On Add To Cart Button', function () {
+    it('[AE-T2,T3,T4] - User Is Able To Type Out A Value Into The Quantity Field And Click On Add To Cart Button', function () {
         //TYPE OUT A VALUE
         productDetails.getQuantityField().click({ force: true })
         .clear()

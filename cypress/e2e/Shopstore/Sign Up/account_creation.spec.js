@@ -1,6 +1,7 @@
 import { createAccount } from '../../../components/Shopstore/Sign Up/account-creation-component';
 import { generatorEmails } from '../../../components/Common/generate-email-component';
 import { filesPaths, signUpData } from '../../../components/Shopstore/Common/data-provider';
+import { label } from '../../../components/Common/label-component';
 
 
 describe('Sign Up Tests', () => {
@@ -9,7 +10,7 @@ describe('Sign Up Tests', () => {
         cy.visit('/login');
     })
 
-    it('[TXX] - User Is Able To See The Log In Section', function () {
+    it('[AE-T8] - User Is Able To See The Log In Section', function () {
         //HEADING
         createAccount.getLogInHeading().should('be.visible')
 
@@ -23,7 +24,7 @@ describe('Sign Up Tests', () => {
         createAccount.getLogInButton().should('be.visible')
     })
 
-    it('[TXX] - User Is Able To See The Sign Up Section', function () {
+    it('[AE-T8] - User Is Able To See The Sign Up Section', function () {
         //HEADING
         createAccount.getSignUpHeading().should('be.visible')
 
@@ -37,7 +38,7 @@ describe('Sign Up Tests', () => {
         createAccount.getSignUpButton().should('be.visible')
     })
 
-    it.only('[TXX] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
+    it('[AE-T10,T11,T12] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
         let email="";
         //NAME
         createAccount.getSignUpNameField().type(signUpData.NAME)
@@ -115,7 +116,35 @@ describe('Sign Up Tests', () => {
         //SEE THE LOG IN PAGE
         createAccount.getCreatedAccountHeading("Account Created!").should('be.visible')
 
+        //SEE THE PARAGRAPHS
+        createAccount.getCreatedAccountParagraphs().should('be.visible')
+        .its('length').should('eq', 2)
+
         //SAVE THE EMAIL AND PASSWORD
         cy.writeFile(filesPaths.FIXTURES_LOGIN, {email: email, password: signUpData.PASSWORD, name: signUpData.NAME})
+
+        //VALIDATE LINK STATUS
+        createAccount.getContinueButton().should('be.visible')
+        .should("have.attr", "href").then((href) => {
+            cy.pageReturnValidStatus(href);
+        })
+        //CLICK ON THE CONTINUE BUTTON
+        createAccount.getContinueButton().click({ force: true })
+    })
+
+    it('[AE-T9] - User Is Able To Fill Out The New User Sign Up Form (With A Registered Account) And Click On Sign Up Button', function () {
+        cy.readFile(filesPaths.FIXTURES_LOGIN).then((json) => {
+            //NAME
+            createAccount.getSignUpNameField(json.name).should('be.visible').type(json.name)
+
+            //EMAIL
+            createAccount.getSignUpEmailField().should('be.visible').type(json.email)
+            
+            //CLICK ON THE LOGIN BUTTON
+            createAccount.getSignUpButton().should('be.visible').click({ force: true })
+
+            //SHOWS A VALIDATION MESSAGE
+            label.getGeneralComponentByText("Email Address already exist!").should('be.visible')
+        })
     })
 })

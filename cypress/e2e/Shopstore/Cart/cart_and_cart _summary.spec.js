@@ -5,11 +5,19 @@ import { modal } from '../../../components/Shopstore/Common/modal-component';
 describe('Cart And Cart Summary Tests', () => {
 
     beforeEach(function () {
-        //ADD A NEW PRODUCT IN O.BLUE_COTTON_INDIE_MICKEY_DRESS
+        //ADD A NEW PRODUCT
         cy.addNewProduct(productData.COTTON_MULL_EMBROIDERED_DRESS)
     })
 
-    it('[TXX] - User Is Able To See The Cart Summary', function () {
+    it('[AE-T4,T5] - User Is Able To See The Cart Summary', function () {
+        //GET THE BREADCRUMB
+        cartSummary.getBreadcrumb().should('be.visible')
+
+        //VALIDATE THE LINK OF THE BREADCRUMB
+        cartSummary.getBreadcrumbLink().should('be.visible')
+        .and("have.attr", "href").then((href) => {
+            cy.pageReturnValidStatus(href);
+        })
         //GET THE CART INFORMATION
         cartSummary.getCartInformation().should('be.visible')
 
@@ -33,7 +41,7 @@ describe('Cart And Cart Summary Tests', () => {
         cartSummary.getDeleteButton().should('be.visible')
     })
 
-    it('[TXX] - User Is Able To Click On The Delete Button', function () {
+    it('[AE-T6,T14] - User Is Able To Click On The Delete Button', function () {
         //CLIK ON THE DELETE BUTTON
         cartSummary.getDeleteButton().click({ force: true })
 
@@ -41,7 +49,7 @@ describe('Cart And Cart Summary Tests', () => {
         cartSummary.getCartInformation().should('not.be.visible')
     })
 
-    it('[TXX] - User Is Able To Click On The Proceed To Checkout Button', function () {
+    it('[AE-T7] - User Is Able To Click On The Proceed To Checkout Button', function () {
         //CLIK ON THE PROCEED TO CHECKOUT BUTTON
         cartSummary.getCheckOutButton().click({ force: true })
 

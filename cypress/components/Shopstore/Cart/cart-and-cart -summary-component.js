@@ -1,4 +1,10 @@
 export const cartSummary = {
+    getBreadcrumb: () => {
+        return cy.get('ol.breadcrumb')
+    },
+    getBreadcrumbLink: () => {
+        return cy.get('ol.breadcrumb').children().eq(0).find('a')
+    },
     getCartInformation: () => {
         return cy.get('[id="cart_info_table"]')
     },
