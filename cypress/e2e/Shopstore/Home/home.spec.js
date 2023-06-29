@@ -116,7 +116,10 @@ describe('Home Page Tests', () => {
         .its('length').should('gte', 34)
     })
 
-    it('[AE-T1,T2] - User Is Able To Choose A Product And Click On The View Product Button', function () {
+    it('[AE-T1,T2] - User Is Able To Scroll Center, Choose A Product And Click On The View Product Button', function () {
+       //SCROLL CENTER TO THE PAGE
+       cy.scrollTo('center')
+
        //CLICK ON THE CHOSEN PRODUCT
        home.getChosenProduct(productData.COTTON_MULL_EMBROIDERED_DRESS).click({ force: true })
 
