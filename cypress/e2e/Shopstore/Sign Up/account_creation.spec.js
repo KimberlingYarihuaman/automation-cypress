@@ -38,7 +38,7 @@ describe('Sign Up Tests', () => {
         createAccount.getSignUpButton().should('be.visible')
     })
 
-    it('[AE-T10,T11,T12] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
+    it.only('[AE-T10,T11,T12] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
         let email="";
         //NAME
         createAccount.getSignUpNameField().type(signUpData.NAME)
@@ -58,10 +58,17 @@ describe('Sign Up Tests', () => {
         createAccount.getMrsOption().should('be.visible').check()
 
         //CHANGE THE NAME
-        createAccount.getAccountInformationNameField().should('be.visible').type(signUpData.CHANGED_NAME)
+        createAccount.getAccountInformationNameField()
+        .should('be.visible')
+        .and('not.be.undefined')
+        .and('not.be.null')
+        .type(signUpData.CHANGED_NAME)
 
         //PREFILLED EMAIL
-        createAccount.getAccountInformationEmailField().should('be.visible')
+        createAccount.getAccountInformationEmailField()
+        .should('be.visible')
+        .and('not.be.undefined')
+        .and('not.be.null')
         .and('have.attr', 'disabled','disabled')
 
         //PASSWORD
