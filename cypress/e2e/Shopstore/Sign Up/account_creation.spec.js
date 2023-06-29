@@ -38,7 +38,7 @@ describe('Sign Up Tests', () => {
         createAccount.getSignUpButton().should('be.visible')
     })
 
-    it.only('[AE-T10,T11,T12] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
+    it('[AE-T10,T11,T12] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
         let email="";
         //NAME
         createAccount.getSignUpNameField().type(signUpData.NAME)
