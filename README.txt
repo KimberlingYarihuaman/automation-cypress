@@ -1,6 +1,6 @@
 
 #Project Title
-Shopp
+Shop
 
 
 #Project Description
