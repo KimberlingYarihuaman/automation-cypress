@@ -27,7 +27,7 @@ export const signUpData = {
     PASSWORD: faker.internet.password(),
     DAYS: faker.number.int({ min: 1, max: 31}),
     MONTH: faker.date.month(),
-    YEARS: faker.helpers.arrayElement(['1990', '1926','1910', '1920', '1936', '1944', '1950', '2000', '1975', '2012', '2021', '2009', '1999', '1896', '1966', '1997', '2015']),
+    YEARS: faker.helpers.arrayElement(['2000','2012', '2005', '2017', '2021', '2009', '1999', '2015']),
     FIRST_NAME: faker.person.firstName(),
     LAST_NAME: faker.person.lastName(),
     COMPANY: faker.company.buzzPhrase(),
@@ -54,4 +54,16 @@ export const paymentMethodData = {
     CVC: faker.finance.creditCardCVV(),
     EXPIRATION_MONTH: faker.number.int({ min: 1, max: 12}),
     EXPIRATION_YEAR: faker.number.int({ min: 2000, max: 2033})
+}
+
+export const edgeData = {
+    NEGATIVE_QUANTITY: faker.number.int({ min: -1000, max: -100}),
+    GENERAL_EDGE_DATA: faker.person.firstName() + faker.number.int({ min: 100, max: 1000}) + faker.helpers.arrayElement(['.','-','*', ',', '&', '$', '#', '%', '!']),
+    PASSWORD: faker.internet.password()
+}
+
+export const verifyMessages = {
+    CREATED_ACCOUNT: 'Account Created!',
+    EXISTING_EMAIL: 'Email Address already exist!',
+    INCORRECT_EMAIL_PASSWORD: 'Your email or password is incorrect!'
 }

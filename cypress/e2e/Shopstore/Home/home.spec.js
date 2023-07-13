@@ -117,13 +117,15 @@ describe('Home Page Tests', () => {
     })
 
     it('[AE-T1,T2] - User Is Able To Scroll Center, Choose A Product And Click On The View Product Button', function () {
+       let product = productData.getRandomProduct()
+
        //SCROLL CENTER TO THE PAGE
        cy.scrollTo('center')
 
        //CLICK ON THE CHOSEN PRODUCT
-       home.getChosenProduct(productData.COTTON_MULL_EMBROIDERED_DRESS).click({ force: true })
+       home.getChosenProduct(product).click({ force: true })
 
        //VERIFY NEW WEBSITE
-       cy.url().should('include', '/product_details/' + productData.COTTON_MULL_EMBROIDERED_DRESS)
+       cy.url().should('include', '/product_details/' + product)
     })
 })

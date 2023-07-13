@@ -1,5 +1,5 @@
 import { createAccount } from '../../../components/Shopstore/Sign Up/account-creation-component';
-import { filesPaths, signUpData } from '../../../components/Shopstore/Common/data-provider';
+import { edgeData, filesPaths, signUpData, verifyMessages } from '../../../components/Shopstore/Common/data-provider';
 import { label } from '../../../components/Common/label-component';
 
 describe('Sign Up Tests', () => {
@@ -20,6 +20,21 @@ describe('Sign Up Tests', () => {
 
         //LOGIN BUTTON
         createAccount.getLogInButton().should('be.visible')
+    })
+
+    it('[AE-T8] - User Is Able To See The Log In Section', function () {
+        let name = signUpData.NAME
+        //EMAIL FIELD
+        createAccount.getLogInEmailField().type(signUpData.getEmail(name))
+
+        //PASSWORD FIELD
+        createAccount.getLogInPasswordField().type(edgeData.PASSWORD)
+
+        //LOGIN BUTTON
+        createAccount.getLogInButton().should('be.visible').click({ force: true})
+
+        //SHOW ERROR MESSAGE
+        createAccount.getLoginErrorMessage(verifyMessages.INCORRECT_EMAIL_PASSWORD).should('be.visible')
     })
 
     it('[AE-T8] - User Is Able To See The Sign Up Section', function () {
@@ -118,7 +133,7 @@ describe('Sign Up Tests', () => {
         createAccount.getCreateAccountButton().click({ force: true })
 
         //SEE THE LOG IN PAGE
-        createAccount.getCreatedAccountHeading("Account Created!").should('be.visible')
+        createAccount.getCreatedAccountHeading(verifyMessages.CREATED_ACCOUNT).should('be.visible')
 
         //SEE THE PARAGRAPHS
         createAccount.getCreatedAccountParagraphs().should('be.visible')
@@ -136,6 +151,76 @@ describe('Sign Up Tests', () => {
         createAccount.getContinueButton().click({ force: true })
     })
 
+    it('[AE-T10,T11,T12] - User Is Able To Enter Special Characters And Numbers In Name Field And Click On Sign Up Button', function () {
+        //NAME
+        let name = edgeData.GENERAL_EDGE_DATA
+        createAccount.getSignUpNameField().type(name)
+
+        //EMAIL
+        createAccount.getSignUpEmailField().type(signUpData.getEmail(name))
+
+        //SIGN UP BUTTON
+        createAccount.getSignUpButton().click({ force: true })
+
+        //FILL OUT THE ACCOUNT INFORMATION
+        createAccount.getAccountInformationHeading().should('be.visible')
+    })
+
+    it('[AE-T10,T11,T12] - User Clicks On Create Account Button And Only Completes The Required Fields', function () {
+        let name, email
+        //NAME
+        name = signUpData.NAME
+        createAccount.getSignUpNameField().type(name)
+
+        //EMAIL
+        email = signUpData.getEmail(name)
+        createAccount.getSignUpEmailField().type(email)
+
+        //SIGN UP BUTTON
+        createAccount.getSignUpButton().click({ force: true })
+
+        //FILL OUT THE ACCOUNT INFORMATION
+        createAccount.getAccountInformationHeading().should('be.visible')
+
+        //PASSWORD
+        createAccount.getAccountInformationPasswordField().should('be.visible').type(signUpData.PASSWORD)
+
+        //FIRST NAME
+        createAccount.getAddressInformationFirstName().should('be.visible').type(signUpData.FIRST_NAME)
+
+        //LAST NAME
+        createAccount.getAddressInformationLastName().should('be.visible').type(signUpData.LAST_NAME)
+
+        //ADDRESS 1
+        createAccount.getAddressInformationAddress1().should('be.visible').type(signUpData.ADDRESS_1)
+
+        //COUNTRY
+        createAccount.getAddressInformationCountry().should('be.visible').select(signUpData.COUNTRY)
+        .should('have.value', signUpData.COUNTRY)
+
+        //STATE
+        createAccount.getAddressInformationState().should('be.visible').type(signUpData.STATE)
+
+        //CITY
+        createAccount.getAddressInformationCity().should('be.visible').type(signUpData.CITY)
+
+        //ZIP CODE
+        createAccount.getAddressInformationZipCode().should('be.visible').type(signUpData.ZIP_CODE)
+
+        //MOBILE NUMBER
+        createAccount.getAddressInformationMobileNumber().should('be.visible').type(signUpData.MOBILE_NUMBER)
+
+        //CREATE ACCOUNT BUTTON
+        createAccount.getCreateAccountButton().click({ force: true })
+
+        //SEE THE LOG IN PAGE
+        createAccount.getCreatedAccountHeading(verifyMessages.CREATED_ACCOUNT).should('be.visible')
+
+        //SAVE THE EMAIL AND PASSWORD
+        cy.writeFile(filesPaths.FIXTURES_LOGIN, {email, password: signUpData.PASSWORD, name: signUpData.NAME})
+    })
+
+
     it('[AE-T9] - User Is Able To Fill Out The New User Sign Up Form (With A Registered Account) And Click On Sign Up Button', function () {
         cy.readFile(filesPaths.FIXTURES_LOGIN).then((json) => {
             //NAME
@@ -148,7 +233,7 @@ describe('Sign Up Tests', () => {
             createAccount.getSignUpButton().should('be.visible').click({ force: true })
 
             //SHOWS A VALIDATION MESSAGE
-            label.getGeneralComponentByText("Email Address already exist!").should('be.visible')
+            label.getGeneralComponentByText(verifyMessages.EXISTING_EMAIL).should('be.visible')
         })
     })
 })

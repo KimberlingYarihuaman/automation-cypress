@@ -25,7 +25,7 @@ describe('Contact Us Page Tests', () => {
         //GET NOTE CONTACT US
         contactUs.getContactUsNote().should('be.visible')
 
-        cy.readFile('cypress/fixtures/login.json').then((json) => {
+        cy.readFile(filesPaths.FIXTURES_LOGIN).then((json) => {
             //NAME
             contactUs.getNameField().should('be.visible').type(json.name)
             //EMAIL

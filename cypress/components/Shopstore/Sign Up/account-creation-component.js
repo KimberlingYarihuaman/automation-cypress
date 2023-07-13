@@ -97,5 +97,8 @@ export const createAccount = {
     },
     getCreatedAccountParagraphs: () => {
         return cy.get('[id="form"]').find('p')
+    },
+    getLoginErrorMessage: (text) => {
+        return cy.get('form>p').contains(text)
     }
 }

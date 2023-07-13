@@ -3,7 +3,7 @@ import { signIn } from '../../../components/Shopstore/Sign In/sign-in-component'
 import { payment } from '../../../components/Shopstore/Payment/payment-component';
 import { checkout } from '../../../components/Shopstore/Checkout/checkout-component';
 import { modal } from '../../../components/Shopstore/Common/modal-component';
-import { messagesData, paymentMethodData, productData } from '../../../components/Shopstore/Common/data-provider';
+import { edgeData, messagesData, paymentMethodData, productData } from '../../../components/Shopstore/Common/data-provider';
 
 
 describe('Payment Tests', () => {
@@ -54,6 +54,41 @@ describe('Payment Tests', () => {
 
         //EXPIRATION YEAR
         payment.getExpirationYear().should('be.visible').type(paymentMethodData.EXPIRATION_YEAR)
+
+        //CLICK ON THE PAY AND CONFIRM ORDER
+        payment.getPayConfirmButton().should('be.visible').click({ force: true })
+    })
+
+    it('[AE-T18] - User Clicks On Pay And Confirm Order Button And Fields Have Special Characters And Letters', function () {
+        //CLICK ON THE SHOPPING CART BUTTON
+        signIn.getShoppingCartButton().click({ force: true })
+
+        //CLICK ON THE PROCEED TO CHECKOUT BUTTON
+        cartSummary.getCheckOutButton().should('be.visible').click({ force: true })
+
+        //TYPE OUT A MESSAGE
+        checkout.getOrderMessageField().type(messagesData.MESSAGE)
+
+        //CLICK ON THE PLACE ORDER BUTTON
+        checkout.getPlaceOrderButton().click({ force: true })
+
+        //GET HEADING
+        payment.getHeading().should('be.visible')
+
+        //NAME CARD
+        payment.getNameCard().should('be.visible').type(edgeData.GENERAL_EDGE_DATA)
+
+        //CARD NUMBER
+        payment.getCardNumber().should('be.visible').type(edgeData.GENERAL_EDGE_DATA)
+
+        //CVC
+        payment.getCVC().should('be.visible').type(edgeData.GENERAL_EDGE_DATA)
+
+        //EXPIRATION MONTH
+        payment.getExpirationMonth().should('be.visible').type(edgeData.GENERAL_EDGE_DATA)
+
+        //EXPIRATION YEAR
+        payment.getExpirationYear().should('be.visible').type(edgeData.GENERAL_EDGE_DATA)
 
         //CLICK ON THE PAY AND CONFIRM ORDER
         payment.getPayConfirmButton().should('be.visible').click({ force: true })

@@ -1,6 +1,5 @@
 import { cartSummary } from '../../../components/Shopstore/Cart/cart-and-cart -summary-component';
 import { productData } from '../../../components/Shopstore/Common/data-provider';
-import { modal } from '../../../components/Shopstore/Common/modal-component';
 
 
 describe('Cart And Cart Summary Tests', () => {
@@ -54,23 +53,7 @@ describe('Cart And Cart Summary Tests', () => {
         //CLIK ON THE PROCEED TO CHECKOUT BUTTON
         cartSummary.getCheckOutButton().click({ force: true })
 
-         //SEE THE CHECKOUT MODAL
-         modal.getModal().should('be.visible').within(() =>{
-            //HEADER
-            modal.getModalHeader().should('be.visible')
-            modal.getModalHeaderIcon().should('be.visible')
-
-            //BODY
-            modal.getModalBody().should('be.visible')
-            modal.getModalText().should('be.visible')
-            modal.getModalLink().should('be.visible')
-            .and("have.attr", "href").then((href) => {
-                cy.pageReturnValidStatus(href);
-            })
-
-            //FOOTER
-            modal.getModalFooter().should('be.visible')
-            modal.getModalButton().should('be.visible')
-        })
+        //SEE THE CHECKOUT MODAL
+        cy.externalModal()
     })
 })

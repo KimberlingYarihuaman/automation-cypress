@@ -1,6 +1,6 @@
 import { productDetails } from '../../../components/Shopstore/Product Details/product-details-component';
 import { modal } from '../../../components/Shopstore/Common/modal-component';
-import { productData } from '../../../components/Shopstore/Common/data-provider';
+import { edgeData, productData } from '../../../components/Shopstore/Common/data-provider';
 
 
 describe('Product Details Tests', () => {
@@ -47,22 +47,19 @@ describe('Product Details Tests', () => {
         productDetails.getAddToCart().should('be.visible').click({ force: true })
 
         //SEE THE ADDED MODAL
-        modal.getModal().should('be.visible').within(() =>{
-            //HEADER
-            modal.getModalHeader().should('be.visible')
-            modal.getModalHeaderIcon().should('be.visible')
+        cy.externalModal()
+    })
 
-            //BODY
-            modal.getModalBody().should('be.visible')
-            modal.getModalText().should('be.visible')
-            modal.getModalLink().should('be.visible')
-            .and("have.attr", "href").then((href) => {
-                cy.pageReturnValidStatus(href);
-            })
+    it('[AE-T2,T3,T4] - User Is Able To Type Out A Negative Value Into The Quantity Field And Click On Add To Cart Button', function () {
+        //TYPE OUT A VALUE
+        productDetails.getQuantityField().click({ force: true })
+        .clear()
+        .type(edgeData.NEGATIVE_QUANTITY)
+        
+        //CLICK ON THE ADD TO CART BUTTON
+        productDetails.getAddToCart().should('be.visible').click({ force: true })
 
-            //FOOTER
-            modal.getModalFooter().should('be.visible')
-            modal.getModalButton().should('be.visible')
-        })
+        //SEE THE ADDED MODAL
+        cy.externalModal()
     })
 })

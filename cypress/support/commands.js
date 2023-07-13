@@ -91,3 +91,24 @@ Cypress.Commands.add('Login', () => {
     signIn.getHeaderUserName(json.name).should('be.visible')
   })
 });
+
+//EXTERNAL MODAL
+Cypress.Commands.add('externalModal', () => {
+  modal.getModal().should('be.visible').within(() =>{
+    //HEADER
+    modal.getModalHeader().should('be.visible')
+    modal.getModalHeaderIcon().should('be.visible')
+
+    //BODY
+    modal.getModalBody().should('be.visible')
+    modal.getModalText().should('be.visible')
+    modal.getModalLink().should('be.visible')
+    .and("have.attr", "href").then((href) => {
+        cy.pageReturnValidStatus(href);
+    })
+
+    //FOOTER
+    modal.getModalFooter().should('be.visible')
+    modal.getModalButton().should('be.visible')
+  })
+});

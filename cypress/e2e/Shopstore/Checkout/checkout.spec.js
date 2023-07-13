@@ -70,4 +70,15 @@ describe('Checkout Tests', () => {
         //CLICK ON THE PLACE ORDER BUTTON
         checkout.getPlaceOrderButton().click({ force: true })
     })
+
+    it('[AE-T15,T16,T17] - User Clicks On Place Order Button With Commentaries Field Empty', function () {
+        //CLICK ON THE SHOPPING CART BUTTON
+        signIn.getShoppingCartButton().click({ force: true })
+
+        //CLICK ON THE PROCEED TO CHECKOUT BUTTON
+        cartSummary.getCheckOutButton().should('be.visible').click({ force: true })
+
+        //CLICK ON THE PLACE ORDER BUTTON
+        checkout.getPlaceOrderButton().click({ force: true })
+    })
 })
