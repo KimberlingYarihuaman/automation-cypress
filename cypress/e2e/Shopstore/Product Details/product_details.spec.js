@@ -6,7 +6,7 @@ import { productData } from '../../../components/Shopstore/Common/data-provider'
 describe('Product Details Tests', () => {
 
     beforeEach(function () {
-        cy.visit('/product_details/' + productData.PREMIUM_POLO_TSHIRTS);
+        cy.visit('/product_details/' + productData.getRandomProduct())
     })
 
     it('[AE-T2] - User Is Able To See The Product Detail', function () {

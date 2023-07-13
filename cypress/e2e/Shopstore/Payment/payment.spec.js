@@ -10,7 +10,7 @@ describe('Payment Tests', () => {
 
     beforeEach(function () {
         //ADD A NEW PRODUCT
-        cy.addNewProduct(productData.SLEEVELESS_UNICORN_PRINT_FIT_FLARE_NET_DRESS)
+        cy.addNewProduct(productData.getRandomProduct())
         //CLICK ON PROCEED TO CHECKOUT
         cartSummary.getCheckOutButton().click({ force: true })
         //CLICK ON THE REGISTER/LOGIN

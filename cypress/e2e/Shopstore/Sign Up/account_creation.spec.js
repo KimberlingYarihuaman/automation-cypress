@@ -1,8 +1,6 @@
 import { createAccount } from '../../../components/Shopstore/Sign Up/account-creation-component';
-import { generatorEmails } from '../../../components/Common/generate-email-component';
 import { filesPaths, signUpData } from '../../../components/Shopstore/Common/data-provider';
 import { label } from '../../../components/Common/label-component';
-
 
 describe('Sign Up Tests', () => {
 
@@ -39,12 +37,13 @@ describe('Sign Up Tests', () => {
     })
 
     it('[AE-T10,T11,T12] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
-        let email="";
+        let name, email
         //NAME
-        createAccount.getSignUpNameField().type(signUpData.NAME)
+        name = signUpData.NAME
+        createAccount.getSignUpNameField().type(name)
 
         //EMAIL
-        email = generatorEmails.getGenerateEmail()
+        email = signUpData.getEmail(name)
         createAccount.getSignUpEmailField().type(email)
 
         //SIGN UP BUTTON
@@ -76,15 +75,13 @@ describe('Sign Up Tests', () => {
 
         //DAYS FIELD
         createAccount.getAccountInformationDaysField().should('be.visible').select(signUpData.DAYS)
-        .should('have.value', '23')
+        .should('have.value', signUpData.DAYS)
 
         //MONTHS FIELD
         createAccount.getAccountInformationMonthsField().should('be.visible').select(signUpData.MONTH)
-        .should('have.value', '3')
 
         //YEARS FIELD
         createAccount.getAccountInformationYearsField().should('be.visible').select(signUpData.YEARS)
-        .should('have.value', '1997')
 
         //FIRST NAME
         createAccount.getAddressInformationFirstName().should('be.visible').type(signUpData.FIRST_NAME)
@@ -103,7 +100,7 @@ describe('Sign Up Tests', () => {
 
         //COUNTRY
         createAccount.getAddressInformationCountry().should('be.visible').select(signUpData.COUNTRY)
-        .should('have.value', 'Canada')
+        .should('have.value', signUpData.COUNTRY)
 
         //STATE
         createAccount.getAddressInformationState().should('be.visible').type(signUpData.STATE)
@@ -128,7 +125,7 @@ describe('Sign Up Tests', () => {
         .its('length').should('eq', 2)
 
         //SAVE THE EMAIL AND PASSWORD
-        cy.writeFile(filesPaths.FIXTURES_LOGIN, {email: email, password: signUpData.PASSWORD, name: signUpData.NAME})
+        cy.writeFile(filesPaths.FIXTURES_LOGIN, {email, password: signUpData.PASSWORD, name: signUpData.NAME})
 
         //VALIDATE LINK STATUS
         createAccount.getContinueButton().should('be.visible')

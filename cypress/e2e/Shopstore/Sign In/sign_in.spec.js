@@ -8,7 +8,7 @@ describe('Validations About The Sign In Page Tests', () => {
 
     beforeEach(function () {
         //ADD A NEW PRODUCT
-        cy.addNewProduct(productData.SLEEVELESS_UNICORN_PATCH_GOWN)
+        cy.addNewProduct(productData.getRandomProduct())
         //CLICK ON PROCEED TO CHECKOUT
         cartSummary.getCheckOutButton().click({ force: true })
         //CLICK ON THE REGISTER/LOGIN

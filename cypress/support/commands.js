@@ -1,11 +1,9 @@
 import { productDetails } from '../components/Shopstore/Product Details/product-details-component.js'
 import { payment } from '../components/Shopstore/Payment/payment-component.js'
 import { createAccount } from '../components/Shopstore/Sign Up/account-creation-component.js'
-import { generatorEmails } from '../components/Common/generate-email-component.js'
 import { signIn } from '../components/Shopstore/Sign In/sign-in-component.js';
 import { modal } from '../components/Shopstore/Common/modal-component';
 import { filesPaths, paymentMethodData, productData, signUpData } from '../components/Shopstore/Common/data-provider.js';
-
 
 //VALIDATE THE LINK STATUS
 Cypress.Commands.add('pageReturnValidStatus', (url) => {
@@ -40,8 +38,9 @@ Cypress.Commands.add('signUpNewUser', () => {
    cy.visit('/login')
 
    //NEW USER SIGNUP!
-   createAccount.getSignUpNameField().type(signUpData.NAME)
-   createAccount.getSignUpEmailField().type(generatorEmails.getGenerateEmail())
+   let name = signUpData.NAME
+   createAccount.getSignUpNameField().type(name)
+   createAccount.getSignUpEmailField().type(signUpData.getEmail(name))
    createAccount.getSignUpButton().click({ force: true })
 
    //ADDITIONAL INFORMATION

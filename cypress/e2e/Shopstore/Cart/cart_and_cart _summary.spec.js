@@ -2,11 +2,12 @@ import { cartSummary } from '../../../components/Shopstore/Cart/cart-and-cart -s
 import { productData } from '../../../components/Shopstore/Common/data-provider';
 import { modal } from '../../../components/Shopstore/Common/modal-component';
 
+
 describe('Cart And Cart Summary Tests', () => {
 
     beforeEach(function () {
         //ADD A NEW PRODUCT
-        cy.addNewProduct(productData.COTTON_MULL_EMBROIDERED_DRESS)
+        cy.addNewProduct(productData.getRandomProduct())
     })
 
     it('[AE-T4,T5] - User Is Able To See The Cart Summary', function () {

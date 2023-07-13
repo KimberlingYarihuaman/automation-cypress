@@ -11,7 +11,7 @@ describe('Payment Tests', () => {
 
     beforeEach(function () {
         //ADD A NEW PRODUCT
-        cy.addNewProduct(productData.MEN_TSHIRT)
+        cy.addNewProduct(productData.getRandomProduct())
         //CLICK ON PROCEED TO CHECKOUT
         cartSummary.getCheckOutButton().click({ force: true })
         //CLICK ON THE REGISTER/LOGIN
