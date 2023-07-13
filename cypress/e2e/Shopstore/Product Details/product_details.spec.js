@@ -1,5 +1,4 @@
 import { productDetails } from '../../../components/Shopstore/Product Details/product-details-component';
-import { modal } from '../../../components/Shopstore/Common/modal-component';
 import { edgeData, productData } from '../../../components/Shopstore/Common/data-provider';
 
 
@@ -37,7 +36,7 @@ describe('Product Details Tests', () => {
         productDetails.getAdditionalInformation().should('be.visible')
     })
 
-    it('[AE-T2,T3,T4] - User Is Able To Type Out A Value Into The Quantity Field And Click On Add To Cart Button', function () {
+    it('[AE-T5,T6] - User Is Able To Type Out A Value Into The Quantity Field And Click On Add To Cart Button', function () {
         //TYPE OUT A VALUE
         productDetails.getQuantityField().click({ force: true })
         .clear()
@@ -50,7 +49,7 @@ describe('Product Details Tests', () => {
         cy.externalModal()
     })
 
-    it('[AE-T2,T3,T4] - User Is Able To Type Out A Negative Value Into The Quantity Field And Click On Add To Cart Button', function () {
+    it('[AE-T3] - User Is Able To Type Out A Negative Value Into The Quantity Field And Click On Add To Cart Button', function () {
         //TYPE OUT A VALUE
         productDetails.getQuantityField().click({ force: true })
         .clear()

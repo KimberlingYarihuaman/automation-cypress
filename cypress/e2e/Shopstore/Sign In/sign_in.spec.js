@@ -19,7 +19,7 @@ describe('Validations About The Sign In Page Tests', () => {
         cy.signUpNewUser()
     })
 
-    it('[AE-T13] - User Is Able To Click On The Shopping Cart Is Localized In The Header', function () {
+    it('[AE-T23] - User Is Able To Click On The Shopping Cart Is Localized In The Header', function () {
         //VALIDATE THE SHOPPING CART BUTTON
         signIn.getShoppingCartButton().should('be.visible')
         .and("have.attr", "href").then((href) => {
@@ -29,12 +29,23 @@ describe('Validations About The Sign In Page Tests', () => {
         signIn.getShoppingCartButton().click({ force: true })
     })
 
-    it('[AE-T15] - User Is Able To Checkout Button In The Sign In', function () {
+    it('[AE-T25] - User Is Able To Checkout Button In The Sign In', function () {
         //CLICK ON THE SHOPPING CART BUTTON
         signIn.getShoppingCartButton().click({ force: true })
 
         //CLICK ON THE PROCEED TO CHECKOUT BUTTON
         cartSummary.getCheckOutButton().should('be.visible').click({ force: true })
+    })
+
+    it('[AE-T24] - User Is Able To Click On The Delete Button In The Sign In', function () {
+        //CLICK ON THE SHOPPING CART BUTTON
+        signIn.getShoppingCartButton().click({ force: true })
+
+        //CLIK ON THE DELETE BUTTON
+        cartSummary.getDeleteButton().click({ force: true })
+
+        //THE TABLE INFORMATION IS NOT VISIBLE
+        cartSummary.getCartInformation().should('not.be.visible')
     })
 })
 
@@ -44,7 +55,7 @@ describe('Log In Page Tests', () => {
        cy.Login()
     })
 
-    it('[AE-T8,T22] - User Is Able To Log In With The Created Previously User And Click On The Contact Us', function () {
+    it('[AE-T39,T40] - User Is Able To Log In With The Created Previously User And Click On The Contact Us', function () {
        //VALIDATE THE LINK STATUS
        home.getHeaderContactUsOption().should('be.visible')
        .and("have.attr", "href").then((href) => {

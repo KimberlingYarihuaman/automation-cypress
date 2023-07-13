@@ -8,7 +8,7 @@ describe('Sign Up Tests', () => {
         cy.visit('/login');
     })
 
-    it('[AE-T8] - User Is Able To See The Log In Section', function () {
+    it('[AE-T10] - User Is Able To See The Log In Section', function () {
         //HEADING
         createAccount.getLogInHeading().should('be.visible')
 
@@ -22,7 +22,7 @@ describe('Sign Up Tests', () => {
         createAccount.getLogInButton().should('be.visible')
     })
 
-    it('[AE-T8] - User Is Able To See The Log In Section', function () {
+    it('[AE-T38] - User Is Able To See The Log In Section', function () {
         let name = signUpData.NAME
         //EMAIL FIELD
         createAccount.getLogInEmailField().type(signUpData.getEmail(name))
@@ -37,7 +37,7 @@ describe('Sign Up Tests', () => {
         createAccount.getLoginErrorMessage(verifyMessages.INCORRECT_EMAIL_PASSWORD).should('be.visible')
     })
 
-    it('[AE-T8] - User Is Able To See The Sign Up Section', function () {
+    it('[AE-T10] - User Is Able To See The Sign Up Section', function () {
         //HEADING
         createAccount.getSignUpHeading().should('be.visible')
 
@@ -51,7 +51,7 @@ describe('Sign Up Tests', () => {
         createAccount.getSignUpButton().should('be.visible')
     })
 
-    it('[AE-T10,T11,T12] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
+    it('[AE-T16,T18,T20,T21,T22] - User Is Able To Fillout The Form And Click On The Sign Up Button', function () {
         let name, email
         //NAME
         name = signUpData.NAME
@@ -151,7 +151,7 @@ describe('Sign Up Tests', () => {
         createAccount.getContinueButton().click({ force: true })
     })
 
-    it('[AE-T10,T11,T12] - User Is Able To Enter Special Characters And Numbers In Name Field And Click On Sign Up Button', function () {
+    it('[AE-T12,T20] - User Is Able To Enter Special Characters And Numbers In Name Field And Click On Sign Up Button', function () {
         //NAME
         let name = edgeData.GENERAL_EDGE_DATA
         createAccount.getSignUpNameField().type(name)
@@ -166,7 +166,7 @@ describe('Sign Up Tests', () => {
         createAccount.getAccountInformationHeading().should('be.visible')
     })
 
-    it('[AE-T10,T11,T12] - User Clicks On Create Account Button And Only Completes The Required Fields', function () {
+    it('[AE-T19,T20] - User Clicks On Create Account Button And Only Completes The Required Fields', function () {
         let name, email
         //NAME
         name = signUpData.NAME
@@ -221,7 +221,7 @@ describe('Sign Up Tests', () => {
     })
 
 
-    it('[AE-T9] - User Is Able To Fill Out The New User Sign Up Form (With A Registered Account) And Click On Sign Up Button', function () {
+    it('[AE-T15] - User Is Able To Fill Out The New User Sign Up Form (With A Registered Account) And Click On Sign Up Button', function () {
         cy.readFile(filesPaths.FIXTURES_LOGIN).then((json) => {
             //NAME
             createAccount.getSignUpNameField(json.name).should('be.visible').type(json.name)

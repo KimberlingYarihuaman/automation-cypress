@@ -21,7 +21,7 @@ describe('Payment Tests', () => {
         cy.signUpNewUser()
     })
 
-    it('[AE-T18] - User Is Able To See The Payment Page And Click On The Pay And Confirm Button', function () {
+    it('[AE-T31] - User Is Able To See The Payment Page And Click On The Pay And Confirm Button', function () {
         //CLICK ON THE SHOPPING CART BUTTON
         signIn.getShoppingCartButton().click({ force: true })
 
@@ -59,7 +59,7 @@ describe('Payment Tests', () => {
         payment.getPayConfirmButton().should('be.visible').click({ force: true })
     })
 
-    it('[AE-T18] - User Clicks On Pay And Confirm Order Button And Fields Have Special Characters And Letters', function () {
+    it('[AE-T30] - User Clicks On Pay And Confirm Order Button And Fields Have Special Characters And Letters', function () {
         //CLICK ON THE SHOPPING CART BUTTON
         signIn.getShoppingCartButton().click({ force: true })
 

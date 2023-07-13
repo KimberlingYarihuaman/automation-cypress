@@ -22,7 +22,7 @@ describe('Payment Tests', () => {
         cy.signUpNewUser()
     })
 
-    it('[AE-T19,T20,T21] - User Is Able To See The Order Confirmation', function () {
+    it('[AE-T31,T32,T33,T34] - User Is Able To See The Order Confirmation', function () {
         //CLICK ON THE SHOPPING CART BUTTON
         signIn.getShoppingCartButton().click({ force: true })
 

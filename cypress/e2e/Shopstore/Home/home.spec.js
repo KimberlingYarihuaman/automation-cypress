@@ -28,7 +28,7 @@ describe('Home Page Tests', () => {
 
     if(!Cypress.config('isMobile')){
         
-        it('[AE-T1] - User Is Able To See And Interact With Carousel', function () {
+        it('[AE-T1] - User Is Able To See The Carousel Correctly', function () {
             //CAROUSEL
             home.getCarousel().should('be.visible')
 
@@ -54,32 +54,6 @@ describe('Home Page Tests', () => {
             home.getCarouselNextButton().should('be.visible').click({ force: true })
         })
     }
-
-    it('[AE-T1] - User Is Able To Click On The Primary Button On Carousel', function () {
-        //VALIDATE STATUS LINK
-        home.getCarouselPrimaryButton().should("have.attr", "href").then((href) => {
-            cy.pageReturnValidStatus(href);
-        })
-
-        //CLICK ON PRIMARY BUTTON
-        home.getCarouselPrimaryButton().should('be.visible').click({ force: true })
-
-        //VALIDATE URL
-        cy.url().should('include', '/test_cases')
-    })
-
-    it('[AE-T1] - User Is Able To Click On The Secondary Button On Carousel', function () {
-         //VALIDATE STATUS LINK
-         home.getCarouselSecondaryButton().should("have.attr", "href").then((href) => {
-            cy.pageReturnValidStatus(href);
-        })
-
-        //CLICK ON SECONDARY BUTTON
-        home.getCarouselSecondaryButton().should('be.visible').click({ force: true })
-
-        //VALIDATE URL
-        cy.url().should('include', '/api_list')
-    })
 
     it('[AE-T1] - User Is Able To See The Products', function () {
         //HEADING

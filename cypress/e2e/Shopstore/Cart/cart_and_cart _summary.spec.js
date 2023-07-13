@@ -9,7 +9,7 @@ describe('Cart And Cart Summary Tests', () => {
         cy.addNewProduct(productData.getRandomProduct())
     })
 
-    it('[AE-T4,T5] - User Is Able To See The Cart Summary', function () {
+    it('[AE-T7] - User Is Able To See The Cart Summary', function () {
         //GET THE BREADCRUMB
         cartSummary.getBreadcrumb().should('be.visible')
 
@@ -41,7 +41,7 @@ describe('Cart And Cart Summary Tests', () => {
         cartSummary.getDeleteButton().should('be.visible')
     })
 
-    it('[AE-T6,T14] - User Is Able To Click On The Delete Button', function () {
+    it('[AE-T8] - User Is Able To Click On The Delete Button', function () {
         //CLIK ON THE DELETE BUTTON
         cartSummary.getDeleteButton().click({ force: true })
 
@@ -49,7 +49,7 @@ describe('Cart And Cart Summary Tests', () => {
         cartSummary.getCartInformation().should('not.be.visible')
     })
 
-    it('[AE-T7] - User Is Able To Click On The Proceed To Checkout Button', function () {
+    it('[AE-T9,T10] - User Is Able To Click On The Proceed To Checkout Button', function () {
         //CLIK ON THE PROCEED TO CHECKOUT BUTTON
         cartSummary.getCheckOutButton().click({ force: true })
 

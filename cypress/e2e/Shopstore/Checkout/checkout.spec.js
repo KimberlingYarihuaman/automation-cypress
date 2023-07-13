@@ -19,7 +19,7 @@ describe('Checkout Tests', () => {
         cy.signUpNewUser()
     })
 
-    it('[AE-T15,T16,T17] - User Is Able To See The Address Details, Review Your Order Sections And Click On The Place Order Button', function () {
+    it('[AE-T27,T28] - User Is Able To See The Address Details, Review Your Order Sections And Click On The Place Order Button', function () {
         //CLICK ON THE SHOPPING CART BUTTON
         signIn.getShoppingCartButton().click({ force: true })
 
@@ -71,7 +71,7 @@ describe('Checkout Tests', () => {
         checkout.getPlaceOrderButton().click({ force: true })
     })
 
-    it('[AE-T15,T16,T17] - User Clicks On Place Order Button With Commentaries Field Empty', function () {
+    it('[AE-T26] - User Clicks On Place Order Button With Commentaries Field Empty', function () {
         //CLICK ON THE SHOPPING CART BUTTON
         signIn.getShoppingCartButton().click({ force: true })
 
